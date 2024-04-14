@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DetectorScreen extends StatefulWidget{
   const DetectorScreen({super.key});
@@ -12,7 +13,19 @@ class DetectorScreen extends StatefulWidget{
 }
 
 class DetectorScreenState extends State<DetectorScreen>{
-  File img=
+  File? img;
+  bool imageUploaded=false;
+  Future _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        img = File(pickedFile.path);
+        imageUploaded=true;
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -24,7 +37,10 @@ class DetectorScreenState extends State<DetectorScreen>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: (){},
+
+            
+            (imageUploaded==true)? Image.file(img!,scale:4):
+            ElevatedButton(onPressed: _pickImage,
             style: const ButtonStyle(
                 elevation: MaterialStatePropertyAll(6),
                 fixedSize: MaterialStatePropertyAll(Size(320, 50)),
@@ -39,6 +55,8 @@ class DetectorScreenState extends State<DetectorScreen>{
                 const SizedBox(width: 25)
               ],),
               ),
+
+
             const SizedBox(height: 15,),
             ElevatedButton(onPressed: (){},
             style: const ButtonStyle(

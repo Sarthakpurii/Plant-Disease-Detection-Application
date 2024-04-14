@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^6.2.1
   image_picker: ^1.0.8
-  tflite: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +64,8 @@ flutter:
   assets:
     - assets/icons/leaf.png
     - assets/icons/gallery.png
+    - DL model/labels.txt
+    - DL model/model.tflite
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
