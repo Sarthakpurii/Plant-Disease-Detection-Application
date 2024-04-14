@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plant_disease/screens/detector-screen.dart';
 
-class HomeScreen extends StatefulWidget{
+class HomeScreen extends StatelessWidget{
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  void _detectorScreenSwitcher(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>DetectorScreen()));
+  }
 
-class _HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen>{
               Text(' Pro',
                 style: GoogleFonts.montserrat(
                   fontSize: 18,
-                  color: Color.fromARGB(255, 131, 198, 154)))
+                  color: const Color.fromARGB(255, 131, 198, 154)))
             ],),
             const SizedBox(height: 12,),
             Image.asset("assets/icons/leaf.png",scale: 2.2,),
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen>{
             Text("Your Plant's Guardian",style: GoogleFonts.lato(fontSize:20),),
             const SizedBox(height:26),
             ElevatedButton(
-              onPressed: (){},
+              onPressed: ()=>_detectorScreenSwitcher(context),
               // ignore: sort_child_properties_last
               child: Text("Proceed",style: GoogleFonts.lato(fontSize:17),),
               style: const ButtonStyle(

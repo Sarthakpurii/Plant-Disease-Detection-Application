@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:plant_disease/screens/detector-screen.dart";
 import "package:plant_disease/screens/home-screen.dart";
 
 final ThemeData purpTheme=ThemeData(
@@ -44,6 +45,6 @@ final ThemeData purpTheme=ThemeData(
 void main(){
   runApp(MaterialApp(
     theme: purpTheme,
-    home: const HomeScreen(),
+    home: const DetectorScreen(),
   ));
 }
