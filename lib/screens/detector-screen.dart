@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:image/image.dart' as imag;
 
 class DetectorScreen extends StatefulWidget{
   const DetectorScreen({super.key});
@@ -13,6 +16,7 @@ class DetectorScreen extends StatefulWidget{
 }
 
 class DetectorScreenState extends State<DetectorScreen>{
+  // Image Picker Variables and Functions
   File? img;
   bool imageUploaded=false;
   Future _pickImage() async {
@@ -23,6 +27,31 @@ class DetectorScreenState extends State<DetectorScreen>{
         imageUploaded=true;
       });
     }
+  }
+
+  // Model Variables and Fucntions
+  Interpreter? _interpreter;
+
+  void loadModel() async {
+    _interpreter = await Interpreter.fromAsset('DL model/model.tflite');
+  }
+ 
+  //Image preprocessing
+ void preprocessImage() async {
+  imag.Image? image = imag.decodeImage(img!.readAsBytesSync());
+  imag.Image resizedImage = imag.copyResize(image!, width: 64, height: 64);
+  var normalizedImage = resizedImage.getBytes().map((pixel) => pixel / 255).toList();
+  var input = Float32List.fromList(normalizedImage).reshape([1, 64, 64, 3]);
+  var output = Float32List(1).reshape([1, 1]);
+  _interpreter!.run(input, output);
+  print(output);
+}
+
+  // initstate
+  @override
+  void initState(){
+    super.initState();
+    loadModel();
   }
 
 
@@ -58,7 +87,7 @@ class DetectorScreenState extends State<DetectorScreen>{
 
 
             const SizedBox(height: 15,),
-            ElevatedButton(onPressed: (){},
+            ElevatedButton(onPressed: preprocessImage,
             style: const ButtonStyle(
                 elevation: MaterialStatePropertyAll(6),
                 fixedSize: MaterialStatePropertyAll(Size(120, 50)),
