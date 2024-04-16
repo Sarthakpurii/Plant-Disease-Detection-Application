@@ -45,6 +45,6 @@ final ThemeData purpTheme=ThemeData(
 void main(){
   runApp(MaterialApp(
     theme: purpTheme,
-    home: const DetectorScreen(),
+    home: const HomeScreen(),
   ));
 }

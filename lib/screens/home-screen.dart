@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget{
             Image.asset("assets/icons/leaf.png",scale: 2.2,),
             const SizedBox(height:18),
             Text("Your Plant's Guardian",style: GoogleFonts.lato(fontSize:20),),
-            const SizedBox(height:26),
+            const SizedBox(height:40),
             ElevatedButton(
               onPressed: ()=>_detectorScreenSwitcher(context),
               // ignore: sort_child_properties_last
