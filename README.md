@@ -1,6 +1,8 @@
 # PlantCare
 
 PlantCare is a Flutter app that can analyze images of plants(apple plant specifically for now) and determine whether they are healthy or diseased. It utilizes a custom-trained VGG16 deep learning model for image classification.
+![-2147483648_-210050](https://github.com/Sarthakpurii/Plant-Disease-Detection-Application/assets/96935483/9b90b99d-9248-46e5-877f-4a9932ef5eae)
+![-2147483648_-210054](https://github.com/Sarthakpurii/Plant-Disease-Detection-Application/assets/96935483/68ccd59f-4c85-4ed6-bf1a-f3a58a0c8057)
 
 ## Features
 
@@ -13,14 +15,17 @@ PlantCare is a Flutter app that can analyze images of plants(apple plant specifi
 ### From Source
 
 1. Clone the repository:
+
 git clone https://github.com/Sarthakpurii/Plant-Disease-Detection-Application.git
 
 
 2. Install the required dependencies:
+
 flutter pub get
 
 
 3. Run the app:
+
 flutter run
 
 (You need to have flutter configured on your desktop.)
